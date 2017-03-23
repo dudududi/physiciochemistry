@@ -1,4 +1,4 @@
-package edu.agh.physiciochemistry.model.gases;
+package edu.agh.physiciochemistry.model;
 
 /**
  * Created by Szymon on 23.03.2017.

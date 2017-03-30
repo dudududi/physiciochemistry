@@ -17,7 +17,7 @@ public class Gas {
     }
 
 
-    public double getMoleNumber() {
+    public double getMoleMass() {
         return moleMass;
     }
 

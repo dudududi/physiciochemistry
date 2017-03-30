@@ -7,17 +7,19 @@ public interface Process {
 
     double REYNOLDS_NUMBER = 8.314;
 
-    void execute(Gas gas, Params params);
+    Result execute(Gas gas, Params params);
 
     class Params {
         double startVolume;
         double endVolume;
         double temperature;
+        double mass;
 
-        Params(double startVolume, double endVolume, double temperature) {
+        Params(double startVolume, double endVolume, double temperature, double mass) {
             this.endVolume = endVolume;
             this.startVolume = startVolume;
             this.temperature = temperature;
+            this.mass = mass;
         }
     }
 

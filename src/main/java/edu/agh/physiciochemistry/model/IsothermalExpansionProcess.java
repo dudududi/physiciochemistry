@@ -7,8 +7,14 @@ public class IsothermalExpansionProcess implements  Process {
 
     // W = n*R*T*ln(V1/V2)
     @Override
-    public void execute(Gas gas, double startVolume, double endVolume, double temperature) {
+    public void execute(Gas gas, Params params) {
         double W;
-        W = gas.getMoleNumber() * IsothermalExpansionProcess.REYNOLDS_NUMBER * temperature * Math.log(startVolume / endVolume);
+        W = IsothermalExpansionProcess.REYNOLDS_NUMBER *
+                params.temperature * Math.log(params.startVolume / params.endVolume);
+        double Q = -W;
+
+
     }
+
+
 }

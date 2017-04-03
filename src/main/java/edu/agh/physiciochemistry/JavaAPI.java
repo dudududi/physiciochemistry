@@ -8,7 +8,8 @@ public class JavaAPI {
     public static final String JS_NAME = "JavaAPI";
 
     @SuppressWarnings("unused")
-    public void echo(String msg){
-        System.out.println(msg);
+    public void count(int x, double y){
+        double result = x*y;
+        System.out.println(result);
     }
 }

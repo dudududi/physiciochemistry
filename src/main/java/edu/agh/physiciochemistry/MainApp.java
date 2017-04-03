@@ -19,7 +19,7 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private WebEngine webEngine;
-    private JavaScriptAPI javaScriptAPI;
+    // private JavaScriptAPI javaScriptAPI;
 
     public static void main(String[] args) {
         launch(args);
@@ -60,8 +60,8 @@ public class MainApp extends Application {
             if (newValue == Worker.State.SUCCEEDED) {
                 JSObject jsObject = (JSObject) webEngine.executeScript("window");
                 jsObject.setMember(JavaAPI.JS_NAME, new JavaAPI());
-                this.javaScriptAPI = new JavaScriptAPI((JSObject) webEngine.executeScript(JavaScriptAPI.JS_LOCATION));
-                javaScriptAPI.callSampleMethod();
+                // this.javaScriptAPI = new JavaScriptAPI((JSObject) webEngine.executeScript(JavaScriptAPI.JS_LOCATION));
+                // javaScriptAPI.callSampleMethod();
             }
         }));
 

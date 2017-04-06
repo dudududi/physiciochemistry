@@ -27,3 +27,7 @@ T = const
 3. Odwracalane sprężanie adiabatyczne (temp, ciśnienie)
 
 4. Izotermiczne spreżanie odwracalane gazu (zmiana ciśnienia, temp, ) 
+
+Przykłady na następne zajęcia:
+2.1, 2.2, 2.7, 2.10
+

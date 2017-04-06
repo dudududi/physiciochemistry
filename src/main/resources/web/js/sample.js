@@ -13,7 +13,7 @@ window.JavaAPI = window.JavaAPI ||
          *              endVol: Number,
          *              gasMass: Number
          *          }
-         * callback = function()
+         * callback = function(dU, dH, Q, W){}
          */
 
         invokeIsothermalExpansionProcess: function(gas, params, callback) { throw new Error("Not implemented");},

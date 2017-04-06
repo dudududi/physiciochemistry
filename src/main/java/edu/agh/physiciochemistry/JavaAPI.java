@@ -3,13 +3,14 @@ package edu.agh.physiciochemistry;
 /**
  * Created by dudek on 3/23/17.
  */
-@SuppressWarnings("unused")
 public class JavaAPI {
 
-    static final String JS_NAME = "JavaAPI";
+    public static final String JS_NAME = "JavaAPI";
 
-    public void echo(String msg){
-        System.out.println(msg);
+    @SuppressWarnings("unused")
+    public void count(int x, double y){
+        double result = x*y;
+        System.out.println(result);
     }
 
     public void invokeIsothermalExpansionProcess(){

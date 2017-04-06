@@ -1,12 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Physiciochemistry App</title>
-    <script src="js/sample.js"></script>
+
+    <!--TODO npm?-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <!---->
+
 </head>
-<body>
-<button type="button" onclick="sample()">Sample</button>
-<p id="demo"></p>
+
+<body ng-app="app" ng-controller="main">
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">TEST</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <span class="mdl-layout-title">Przemiany</span>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+                <a class="mdl-navigation__link" href="">Link</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <h3>Lorem ipsum dolor sit amet.</h3>
+
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--6-col">
+                        <form action="#">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" ng-model="x" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
+                                <label class="mdl-textfield__label" for="sample2">Number...</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
+                        </form>
+                        *
+                        <form action="#">
+                            <div class="mdl-textfield mdl-js-textfield">
+                                <input class="mdl-textfield__input" ng-model="y" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
+                                <label class="mdl-textfield__label" for="sample2">Number...</label>
+                                <span class="mdl-textfield__error">Input is not a number!</span>
+                            </div>
+                        </form>
+                        <button ng-click="sample()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">  
+                            <span>process</span>
+                        </button>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col">
+
+
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/app.js"></script>
 </body>
+
 </html>

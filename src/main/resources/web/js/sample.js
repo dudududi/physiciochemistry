@@ -21,14 +21,3 @@ window.JavaAPI = window.JavaAPI ||
         invokeIsothermalCompressProcess: function(gas, params, callback) { throw new Error("Not implemented");},
         invokeAdiabaticCompressProcess: function(gas, params, callback) { throw new Error("Not implemented");}
     };
-
-function sample() {
-    document.getElementById('demo').innerHTML += "hehe cwele ";
-
-
-    window.JavaAPI.invokeIsothermalExpansionProcess(){
-
-    }
-
-
-}

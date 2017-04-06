@@ -1,12 +1,34 @@
-window.jsAPI = {
-    echo: function (msg) {
-        document.getElementById('demo').innerHTML += msg + " ";
-    }
-};
+window.JavaAPI = window.JavaAPI ||
+    {
+        /**
+         * gas = {
+         *          moleNumber: Number,
+         *          properHeat: Number
+         *       }
+         *
+         * params = {
+         *              beginTemp: Number,
+         *              endTemp: Number -> only for non-isothermal,
+         *              beginVol: Number,
+         *              endVol: Number,
+         *              gasMass: Number
+         *          }
+         * callback = function()
+         */
+
+        invokeIsothermalExpansionProcess: function(gas, params, callback) { throw new Error("Not implemented");},
+        invokeAdiabaticExpansionProcess: function(gas, params, callback) { throw new Error("Not implemented");},
+        invokeIsothermalCompressProcess: function(gas, params, callback) { throw new Error("Not implemented");},
+        invokeAdiabaticCompressProcess: function(gas, params, callback) { throw new Error("Not implemented");}
+    };
 
 function sample() {
     document.getElementById('demo').innerHTML += "hehe cwele ";
-    window.JavaAPI.echo("Pozdrowienia dla Javy");
 
-    window.JavaAPI.izotermicznaPRzemianaTwojejStarej({Q: 1, W: 2}, function(result){});
+
+    window.JavaAPI.invokeIsothermalExpansionProcess(){
+
+    }
+
+
 }

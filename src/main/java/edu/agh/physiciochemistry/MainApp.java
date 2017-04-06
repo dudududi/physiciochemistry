@@ -1,5 +1,6 @@
 package edu.agh.physiciochemistry;
 
+import com.mohamnag.fxwebview_debugger.DevToolsDebuggerServer;
 import javafx.application.Application;
 import javafx.concurrent.Worker;
 import javafx.fxml.FXMLLoader;
@@ -65,8 +66,20 @@ public class MainApp extends Application {
             }
         }));
 
+        try {
+            DevToolsDebuggerServer.startDebugServer(webEngine.impl_getDebugger(), 51742);
+        } catch (Exception e){
+            System.err.println("Error occurred during starting debug session. " + e.getMessage());
+        }
+
+
         webEngine.setJavaScriptEnabled(true);
         webEngine.load(url.toExternalForm());
 
+    }
+
+    @Override
+    public void stop() throws Exception {
+        DevToolsDebuggerServer.stopDebugServer();
     }
 }

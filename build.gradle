@@ -6,6 +6,7 @@ apply plugin: 'application'
 
 repositories {
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 sourceSets {
@@ -28,5 +29,6 @@ targetCompatibility = 1.8
 
 
 dependencies {
+    compile 'com.github.mohamnag:javafx_webview_debugger:-SNAPSHOT'
     testCompile group: 'junit', name: 'junit', version: '4.11'
 }

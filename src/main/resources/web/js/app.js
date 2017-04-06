@@ -1,6 +1,6 @@
-(function () {
+(function() {
     window.jsAPI = {
-        echo: function (msg) {
+        echo: function(msg) {
             document
                 .getElementById('demo')
                 .innerHTML += msg + " ";
@@ -11,16 +11,20 @@
         .module('app', [])
         .controller('main', [
             '$scope',
-            function ($scope) {
+            function($scope) {
 
-                $scope.sample = function () {
+                $scope.sample = function() {
                     window
                         .JavaAPI
-                        .count($scope.x, $scope.y);
+                        .count($scope.x, $scope.y, { onResult: callback });
 
                 }
 
-                $scope.test = "dupa";
+                $scope.result = "dupa";
+
+                var callback = function(result) {
+                    $scope.result = result;
+                };
 
             }
         ]);

@@ -59,13 +59,8 @@ public interface Process {
             this.dU = dU;
         }
 
-        public Map<String, Object> toJSObject(){
-            Map<String, Object> jsObj = new HashMap<>();
-            jsObj.put("W", W);
-            jsObj.put("Q", Q);
-            jsObj.put("dH", dH);
-            jsObj.put("dU", dU);
-            return jsObj;
+        public Object[] toJSArgs() {
+            return new Object[]{W, Q, dH, dU};
         }
     }
 }

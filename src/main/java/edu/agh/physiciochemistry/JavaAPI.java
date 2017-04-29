@@ -23,7 +23,7 @@ public class JavaAPI {
 
     public void invokeIsothermalExpansionProcess(JSObject gas, JSObject params, JSObject callback){
         Process.Result result = (new IsothermalExpansionProcess()).execute(Gas.fromJSObject(gas), Process.Params.fromJSObject(params));
-        callback.call("onResult", result.toJSObject());
+        callback.call("onResult", result.toJSArgs());
     }
 
     public void invokeAdiabaticExpansionProcess(){

@@ -61,7 +61,8 @@
                 <div>
                     <span>Gaz : {{selectedProcess.data.gas.name? selectedProcess.data.gas.name : 'wybierz'}}</span>
                     <button id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
-                        <i class="material-icons">more_vert</i>
+                        <!--<i class="material-icons">more_vert</i>-->
+                        \/
                     </button>
 
                     <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
@@ -125,8 +126,10 @@
                 </div>
                 <hr/>
                 <p><b>Wynik końcowy</b></p>
-
-                <span>{{result}}</span>
+                <span>W: {{result.W}}|</span>
+                <span>Q: {{result.Q}}|</span>
+                <span>dH: {{result.dH}}|</span>
+                <span>dU: {{result.dU}}|</span>
             </div>
         </div>
     </div>

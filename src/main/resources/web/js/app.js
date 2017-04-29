@@ -13,19 +13,18 @@
             '$scope',
             function ($scope) {
 
-                var processFunction1 = function (data) {
-                    console.log('dupa');
+                var invokeIsothermalExpansionProcess = function (data) {
                     window
                         .JavaAPI
                         .invokeIsothermalExpansionProcess({
                             moleMass: data.gas.moleMass,
                             properHeat: data.gas.properHeat
                         }, {
-                            mass: data.gas.mass,
-                            startVolume: data.gas.startVolume,
-                            endVolume: data.gas.endVolume,
-                            startTemp: data.gas.startTemp,
-                            endTemp: data.gas.endTemp
+                            mass: parseFloat(data.mass),
+                            startVolume: parseFloat(data.startVolume),
+                            endVolume: parseFloat(data.endVolume),
+                            startTemp: parseFloat(data.startTemp),
+                            endTemp: parseFloat(data.endTemp)
                         }, {onResult: callback});
                 };
 
@@ -40,7 +39,7 @@
                         name: "Rozprężanie izotermincze",
                         id: 1,
                         data: {},
-                        processFunction: processFunction1
+                        processFunction: invokeIsothermalExpansionProcess
                     }, {
                         name: "Rozprężanie adiabatyczne",
                         id: 2,
@@ -90,8 +89,13 @@
                     $scope.selectedProcess = process;
                 };
 
-                var callback = function (result) {
-                    $scope.result = JSON.parse(result);
+                var callback = function (W, Q, dH, dU) {
+                    $scope.result = {
+                        W: W,
+                        Q: Q,
+                        dH: dH,
+                        dU: dU
+                    };
                 };
 
             }

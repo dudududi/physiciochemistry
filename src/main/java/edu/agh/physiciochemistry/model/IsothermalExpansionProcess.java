@@ -18,14 +18,14 @@ public class IsothermalExpansionProcess implements  Process {
         dH = 0;
 
         n = this.calcMoleNumber(params.mass, gas.getMoleMass());
-        W = this.calcWork(n, params.temperature, params.startVolume, params.endVolume);
+        W = this.calcWork(n, params.startTemperature, params.startVolume, params.endVolume);
         Q = - W;
 
         return new Result(W, Q, dH, dU);
     }
 
     private double calcWork(double n, double temperature, double startVolume, double endVolume){
-        return n * IsothermalExpansionProcess.REYNOLDS_NUMBER * temperature * Math.log(startVolume/endVolume);
+        return n * REYNOLDS_NUMBER * temperature * Math.log(startVolume/endVolume);
     }
 
     private double calcMoleNumber(double mass, double moleMass){

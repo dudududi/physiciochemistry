@@ -19,7 +19,7 @@ WEJSCIE:
 
 Możliwość wprowadzania 3 - 4 gazów
 Ilosc moli
-Objetosc z jakiej do jakiej
+Objetosc z jakiej do jakiej dochodze
 T = const
 
 2. Rozprężanie adiabatyczne, zmiana obj podzczas rozprężania
@@ -28,6 +28,4 @@ T = const
 
 4. Izotermiczne spreżanie odwracalane gazu (zmiana ciśnienia, temp, ) 
 
-Przykłady na następne zajęcia:
-2.1, 2.2, 2.7, 2.10
 

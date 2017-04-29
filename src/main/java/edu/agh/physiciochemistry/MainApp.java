@@ -61,8 +61,6 @@ public class MainApp extends Application {
             if (newValue == Worker.State.SUCCEEDED) {
                 JSObject jsObject = (JSObject) webEngine.executeScript("window");
                 jsObject.setMember(JavaAPI.JS_NAME, new JavaAPI());
-                // this.javaScriptAPI = new JavaScriptAPI((JSObject) webEngine.executeScript(JavaScriptAPI.JS_LOCATION));
-                // javaScriptAPI.callSampleMethod();
             }
         }));
 

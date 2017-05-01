@@ -62,23 +62,29 @@
                     {
                         name: "Argon",
                         moleMass: 39.948,
-                        properHeat: 0.520
-
+                        properHeat: 0.520,
+                        moleHeatWithConstPressure: 20.8,
+                        moleHeatWithConstVolume: 12.5
                     }, {
                         name: "Neon",
                         moleMass: 20.179,
-                        properHeat: 0.904
+                        properHeat: 0.904,
+                        moleHeatWithConstPressure: 20.8,
+                        moleHeatWithConstVolume: 12.5
 
                     }, {
                         name: "Krypton",
                         moleMass: 83.798,
-                        properHeat: 0.248
+                        properHeat: 0.248,
+                        moleHeatWithConstPressure: 20.8,
+                        moleHeatWithConstVolume: 12.5
 
                     }, {
                         name: "Hel",
                         moleMass: 4.0026,
-                        properHeat: 5.193
-
+                        properHeat: 5.193,
+                        moleHeatWithConstPressure: 20.8,
+                        moleHeatWithConstVolume: 12.5
                     }
                 ];
 

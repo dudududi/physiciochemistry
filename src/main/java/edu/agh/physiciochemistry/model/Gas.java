@@ -40,7 +40,7 @@ public class Gas {
         return moleHeatWithConstPressure;
     }
 
-    public double getMoleHeatWIthConstVolume() {
+    public double getMoleHeatWithConstVolume() {
         return this.moleHeatWIthConstVolume;
     }
 

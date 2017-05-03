@@ -11,6 +11,7 @@
     <script src="../web/libs/material.min.js"></script>
     <script src="../web/libs/angular.min.js"></script>
     <!---->
+    <link rel="stylesheet" type="text/css" href="../web/res/css/material-icons.css">
 
     <style>
         .pointer {
@@ -60,11 +61,10 @@
 
                 <div>
                     <span>Gaz : {{selectedProcess.data.gas.name? selectedProcess.data.gas.name : 'wybierz'}}</span>
-                    <button id="demo-menu-lower-left" class="mdl-button mdl-js-button mdl-button--icon">
-                        <!--<i class="material-icons">more_vert</i>-->
-                        \/
+                    <button id="demo-menu-lower-left" class="mdl-button mdl-js-button ">
+                        {{selectedProcess.data.gas.name? selectedProcess.data.gas.name : 'Wybierz'}}
+                        <img src="res/arrow_down.png"></img>
                     </button>
-
                     <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
                         <li class="mdl-menu__item" ng-repeat="gas in gases" ng-click="selectedProcess.data.gas = gas">{{gas.name}}</li>
                     </ul>
@@ -117,7 +117,7 @@
                 <hr/>
                 <p><b>Zdefiniowane dane</b></p>
                 <div>
-                    <p ng-show="selectedProcess.data.gas"><span>Gas: </span><i>[ {{selectedProcess.data.gas.name}}, m: {{selectedProcess.data.gas.moleMass}}u, Cw: {{selectedProcess.data.gas.properHeat}}J/gK ]</i></p>
+                    <p ng-show="selectedProcess.data.gas"><span>Gas: </span><i>[ {{selectedProcess.data.gas.name}}, m: {{selectedProcess.data.gas.moleMass}}u, Cw: {{selectedProcess.data.gas.properHeat}}J/gK, {{selectedProcess.data.gas.moleHeatWithConstPressure}}, {{selectedProcess.data.gas.moleHeatWithConstVolume}} ]</i></p>
                     <p ng-show="selectedProcess.data.mass"><span>Masa: </span><i>{{selectedProcess.data.mass}}g</i></p>
                     <p ng-show="selectedProcess.data.startVolume"><span>Objętość początkowa: </span><i>{{selectedProcess.data.startVolume}}m^3</i></p>
                     <p ng-show="selectedProcess.data.endVolume"><span>Objętość końcowa: </span><i>{{selectedProcess.data.endVolume}}m^3</i></p>
@@ -126,10 +126,10 @@
                 </div>
                 <hr/>
                 <p><b>Wynik końcowy</b></p>
-                <span>W: {{result.W}}|</span>
-                <span>Q: {{result.Q}}|</span>
-                <span>dH: {{result.dH}}|</span>
-                <span>dU: {{result.dU}}|</span>
+                <span>W: {{result.W  | number:4}}, </span>
+                <span>   Q: {{result.Q  | number:4}}, </span>
+                <span>   dH: {{result.dH  | number:4}}, </span>
+                <span>   dU: {{result.dU  | number:4}}, </span>
             </div>
         </div>
     </div>

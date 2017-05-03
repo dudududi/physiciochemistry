@@ -28,7 +28,22 @@
                         }, {onResult: callback});
                 };
 
-                var processFunction2 = function (data) {};
+                var invokeAdiabaticExpansionProcess = function (data) {
+                    window
+                        .JavaAPI
+                        .invokeAdiabaticExpansionProcess({
+                            moleMass: parseFloat(data.gas.moleMass),
+                            properHeat: parseFloat(data.gas.properHeat),
+                            moleHeatWithConstPressure: parseFloat(data.gas.moleHeatWithConstPressure),
+                            moleHeatWIthConstVolume: parseFloat(data.gas.moleHeatWIthConstVolume)
+
+                        },
+                            {
+                            startTemp: parseFloat(data.startTemp),
+                            startPressure: parseFloat(data.startPressure),
+                            endPressure: parseFloat(data.endPressure)
+                        }, {onResult: callback});
+                };
 
                 var processFunction3 = function (data) {};
 
@@ -44,7 +59,7 @@
                         name: "Rozprężanie adiabatyczne",
                         id: 2,
                         data: {},
-                        processFunction: processFunction2
+                        processFunction: invokeAdiabaticExpansionProcess
                     }, {
                         name: "Odwracalane sprężanie adiabatyczne",
                         id: 3,

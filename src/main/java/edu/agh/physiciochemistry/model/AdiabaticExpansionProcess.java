@@ -16,7 +16,7 @@ public class AdiabaticExpansionProcess implements  Process {
 
         //Adiabatical Process -> Q = 0
         Q = 0;
-        if (params.startTemperature != 0 && params.endTemperature != 0) {
+        if (params.startVolume != 0 && params.endVolume != 0) {
             endTempeature = this.calcEndTempUsingVolumes(params.startTemperature, params.startVolume, params.endVolume, gas.getHeatCapacityRatio());
         } else {
             endTempeature = this.calcEndTempUsingPressures(params.startTemperature, params.startPressure, params.endPressure, gas.getHeatCapacityRatio());

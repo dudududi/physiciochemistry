@@ -38,40 +38,35 @@
                             moleHeatWithConstVolume: parseFloat(data.gas.moleHeatWithConstVolume)
 
                         }, {
+                            startVolume:  data.isVolumeChecked ? parseFloat(data.startVolume) : 0,
+                            endVolume: data.isVolumeChecked ? parseFloat(data.endVolume) : 0,
                             mass: parseFloat(data.mass),
                             startTemp: parseFloat(data.startTemp),
-                            startPressure: parseFloat(data.startPressure),
-                            endPressure: parseFloat(data.endPressure)
+                            startPressure: data.isVolumeChecked ? 0 : parseFloat(data.startPressure),
+                            endPressure: data. isVolumeChecked ? 0 : parseFloat(data.endPressure)
                         }, {onResult: callback});
                 };
 
-                var processFunction3 = function (data) {};
-
-                var processFunction4 = function (data) {};
 
                 $scope.processes = [
                     {
-                        name: "Rozprężanie izotermincze",
+                        name: "izotermincza",
                         id: 1,
                         data: {},
                         processFunction: invokeIsothermalExpansionProcess
                     }, {
-                        name: "Rozprężanie adiabatyczne",
+                        name: "adiabatyczna",
                         id: 2,
                         data: {},
                         processFunction: invokeAdiabaticExpansionProcess
-                    }, {
-                        name: "Odwracalane sprężanie adiabatyczne",
-                        id: 3,
-                        data: {},
-                        processFunction: processFunction3
-                    }, {
-                        name: "Odwracalane sprężanie izotermiczne",
-                        id: 4,
-                        data: {},
-                        processFunction: processFunction4
-                    }
-                ];
+                    }];
+
+                $scope.clearData = function(process){
+                    process.data.startVolume = undefined;
+                    process.data.endVolume = undefined;
+                    process.data.startPressure = undefined;
+                    process.data.endPressure = undefined;
+                };
 
                 $scope.gases = [
                     {
@@ -107,16 +102,19 @@
                 $scope.result = undefined;
 
                 $scope.selectProcess = function (process) {
+                    $scope.selectedProcess.data = {};
+                    $scope.result = {};
                     $scope.selectedProcess = process;
                 };
 
-                var callback = function (W, Q, dH, dU) {
+                var callback = function (W, Q, dH, dU, endTemperature) {
                     $scope.result = {
                         W: W,
                         Q: Q,
                         dH: dH,
                         dU: dU
                     };
+                    endTemperature ? $scope.result.endTemperature = endTemperature: '';
                 };
             }
         ]);

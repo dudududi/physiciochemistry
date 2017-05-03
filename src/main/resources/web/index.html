@@ -41,8 +41,6 @@
         <main class="mdl-layout__content">
             <div ng-show="selectedProcess.id === 1" ng-include src="'template1.html'"></div>
             <div ng-show="selectedProcess.id === 2" ng-include src="'template2.html'"></div>
-            <div ng-show="selectedProcess.id === 3" ng-include src="'template3.html'"></div>
-            <div ng-show="selectedProcess.id === 4" ng-include src="'template4.html'"></div>
         </main>
     </div>
 
@@ -71,37 +69,38 @@
                 </div>
                 <form action="#">
                     <div class="mdl-textfield mdl-js-textfield">
+                        <p>Masa gazu</p>
                         <input class="mdl-textfield__input" ng-model="selectedProcess.data.mass" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
-                        <label class="mdl-textfield__label" for="sample2">Masa gazu</label>
                         <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
                     </div>
                 </form>
                 <form action="#">
                     <div class="mdl-textfield mdl-js-textfield">
+                        <p>Objętość początkowa</p>
                         <input class="mdl-textfield__input" ng-model="selectedProcess.data.startVolume" type="text" pattern="-?[0-9]*(\.[0-9]+)?"
-                            id="sample2">
-                        <label class="mdl-textfield__label" for="sample2">Objętość początkowa</label>
+                            id="sample3">
                         <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
                     </div>
                 </form>
                 <form action="#">
                     <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" ng-model="selectedProcess.data.endVolume" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
-                        <label class="mdl-textfield__label" for="sample2">Objętość końcowa</label>
+                        <p>Objętość końcowa</p>
+                        <input class="mdl-textfield__input" ng-model="selectedProcess.data.endVolume" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample4">
+                        <!--<label class="mdl-textfield__label" for="sample4">Objętość końcowa</label>-->
                         <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
                     </div>
                 </form>
                 <form action="#">
                     <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" ng-model="selectedProcess.data.startTemp" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
-                        <label class="mdl-textfield__label" for="sample2">Temperatura początkowa</label>
+                        <p>Temperatura początkowa</p>
+                        <input class="mdl-textfield__input" ng-model="selectedProcess.data.startTemp" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample5">
                         <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
                     </div>
                 </form>
                 <form action="#">
                     <div class="mdl-textfield mdl-js-textfield">
-                        <input class="mdl-textfield__input" ng-model="selectedProcess.data.endTemp" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
-                        <label class="mdl-textfield__label" for="sample2">Temperatura końcowa</label>
+                        <p>Temperatura końcowa</p>
+                        <input class="mdl-textfield__input" ng-model="selectedProcess.data.endTemp" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample6">
                         <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
                     </div>
                 </form>
@@ -154,31 +153,55 @@
                 </div>
                 <form action="#">
                     <div class="mdl-textfield mdl-js-textfield">
+                        <p>Temperatura początkowa</p>
                         <input class="mdl-textfield__input" ng-model="selectedProcess.data.startTemp" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
-                        <label class="mdl-textfield__label" for="sample2">Temperatura poczatkowa</label>
                         <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
                     </div>
                 </form>
-                <form action="#">
+                <span ng-show="selectedProcess.data.isVolumeChecked">Objętość</span>
+                <span ng-hide="selectedProcess.data.isVolumeChecked">Ciśnienie</span>
+
+                <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="switch-2">
+                    <input ng-change="clearData(selectedProcess)" ng-model="selectedProcess.data.isVolumeChecked" type="checkbox" id="switch-2" class="mdl-switch__input">
+                    <span class="mdl-switch__label"></span>
+                </label>
+                <form ng-hide="selectedProcess.data.isVolumeChecked" action="#">
                     <div class="mdl-textfield mdl-js-textfield">
+                        <p>Ciśnienie początkowe</p>
                         <input class="mdl-textfield__input" ng-model="selectedProcess.data.startPressure" type="text" pattern="-?[0-9]*(\.[0-9]+)?"
                             id="sample2">
-                        <label class="mdl-textfield__label" for="sample2">Ciśnienie początkowe</label>
                         <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
                     </div>
                 </form>
-                <form action="#">
+                <form  ng-hide="selectedProcess.data.isVolumeChecked" action="#">
                     <div class="mdl-textfield mdl-js-textfield">
+                        <p>Ciśnienie końcowe</p>
                         <input class="mdl-textfield__input" ng-model="selectedProcess.data.endPressure" type="text" pattern="-?[0-9]*(\.[0-9]+)?"
                             id="sample2">
-                        <label class="mdl-textfield__label" for="sample2">Cisnienie koncowe</label>
+                        <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
+                    </div>
+                </form>
+
+                <form ng-show="selectedProcess.data.isVolumeChecked" action="#">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <p>Objętość początkowa</p>
+                        <input class="mdl-textfield__input" ng-model="selectedProcess.data.startVolume" type="text" pattern="-?[0-9]*(\.[0-9]+)?"
+                               id="sample2">
+                        <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
+                    </div>
+                </form>
+                <form  ng-show="selectedProcess.data.isVolumeChecked" action="#">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <p>Objętość końcowa</p>
+                        <input class="mdl-textfield__input" ng-model="selectedProcess.data.endVolume" type="text" pattern="-?[0-9]*(\.[0-9]+)?"
+                               id="sample2">
                         <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
                     </div>
                 </form>
                 <form action="#">
                     <div class="mdl-textfield mdl-js-textfield">
+                        <p>Masa</p>
                         <input class="mdl-textfield__input" ng-model="selectedProcess.data.mass" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
-                        <label class="mdl-textfield__label" for="sample2">Masa</label>
                         <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
                     </div>
                 </form>
@@ -199,49 +222,17 @@
                     <p ng-show="selectedProcess.data.startTemp"><span>Temperatura początkowa: </span><i>{{selectedProcess.data.startTemp}}K</i></p>
                     <p ng-show="selectedProcess.data.startPressure"><span>Ciśnienie poczatkowe: </span><i>{{selectedProcess.data.startPressure}}Pa</i></p>
                     <p ng-show="selectedProcess.data.endPressure"><span>Ciśnienie końcowe: </span><i>{{selectedProcess.data.endPressure}}Pa</i></p>
+                    <p ng-show="selectedProcess.data.startVolume"><span>Objętość początkowa: </span><i>{{selectedProcess.data.startVolume}}m^3</i></p>
+                    <p ng-show="selectedProcess.data.endVolume"><span>Objętość końcowa: </span><i>{{selectedProcess.data.endVolume}}m^3</i></p>
                 </div>
                 <hr/>
                 <span>W: {{result.W  | number:4}}, </span>
                 <span>   Q: {{result.Q  | number:4}}, </span>
                 <span>   dH: {{result.dH  | number:4}}, </span>
                 <span>   dU: {{result.dU  | number:4}}, </span>
-            </div>
-        </div>
-    </div>
-</script>
-<script type="text/ng-template" id="template3.html">
-    <div class="page-content">
-        <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--4-col">
-                <h4>Zdefiniuj dane wejściowe</h4>
-                <hr/>
-
-
-
-            </div>
-            <div class="mdl-cell mdl-cell--8-col">
-                <h4>Wyniki</h4>
-                <hr/>
-
+                <span>   Temperatura końcowa: {{result.endTemperature | number:4}}</span>
             </div>
         </div>
     </div>
 </script>
 
-<script type="text/ng-template" id="template4.html">
-    <div class="page-content">
-        <div class="mdl-grid">
-            <div class="mdl-cell mdl-cell--4-col">
-                <h4>Zdefiniuj dane wejściowe</h4>
-                <hr/>
-
-
-            </div>
-            <div class="mdl-cell mdl-cell--8-col">
-                <h4>Wyniki</h4>
-                <hr/>
-
-            </div>
-        </div>
-    </div>
-</script>

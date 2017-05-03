@@ -16,7 +16,11 @@ public class AdiabaticExpansionProcess implements  Process {
 
         //Adiabatical Process -> Q = 0
         Q = 0;
-        endTempeature = this.calcEndTemp(params.startTemperature, params.startPressure, params.endPressure, gas.getHeatCapacityRatio());
+        if (params.startTemperature != 0 && params.endTemperature != 0) {
+            endTempeature = this.calcEndTempUsingVolumes(params.startTemperature, params.startVolume, params.endVolume, gas.getHeatCapacityRatio());
+        } else {
+            endTempeature = this.calcEndTempUsingPressures(params.startTemperature, params.startPressure, params.endPressure, gas.getHeatCapacityRatio());
+        }
         n = this.calcMoleNumber(params.mass, gas.getMoleMass());
         W = calcWork(n, gas.getMoleHeatWithConstVolume(), params.startTemperature, endTempeature);
         dU = W;
@@ -29,10 +33,14 @@ public class AdiabaticExpansionProcess implements  Process {
         return n*cv*(T1-T2);
     }
 
-    private double calcEndTemp(double T1, double p1, double p2, double k){
+    private double calcEndTempUsingPressures(double T1, double p1, double p2, double k){
         double fraction = p1 / p2;
         double index = (1 - k) / k;
-        return p1 * Math.pow(fraction, index);
+        return T1 * Math.pow(fraction, index);
+    }
+
+    private double calcEndTempUsingVolumes(double T1, double V1, double V2, double k){
+        return T1 * Math.pow(V2, 1-k) / Math.pow(V1, 1-k);
     }
 
     private double calcMoleNumber(double m, double M){

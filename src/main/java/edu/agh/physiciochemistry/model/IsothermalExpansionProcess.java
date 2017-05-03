@@ -21,7 +21,7 @@ public class IsothermalExpansionProcess implements  Process {
         W = this.calcWork(n, params.startTemperature, params.startVolume, params.endVolume);
         Q = - W;
 
-        return new Result(W, Q, dH, dU);
+        return new Result(W, Q, dH, dU, 0);
     }
 
     private double calcWork(double n, double temperature, double startVolume, double endVolume){

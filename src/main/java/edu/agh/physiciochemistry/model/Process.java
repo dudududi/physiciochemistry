@@ -60,16 +60,18 @@ public interface Process {
         double Q;
         double dH;
         double dU;
+        double endTemp;
 
-        Result(double w, double q, double dH, double dU) {
+        Result(double w, double q, double dH, double dU, double endTemp) {
             W = w;
             Q = q;
             this.dH = dH;
             this.dU = dU;
+            this.endTemp = endTemp;
         }
 
         public Object[] toJSArgs() {
-            return new Object[]{W, Q, dH, dU};
+            return endTemp == 0 ? new Object[]{W, Q, dH, dU} : new Object[]{W, Q, dH, dU, endTemp};
         }
     }
 }

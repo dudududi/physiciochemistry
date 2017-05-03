@@ -13,19 +13,20 @@ public class Gas {
     private double moleMass;
     private double properHeat;
     private double moleHeatWithConstPressure; //cp
-    private double moleHeatWIthConstVolume; //cv
+    private double moleHeatWithConstVolume; //cv
     private double heatCapacityRatio; // k
 
     public Gas(double moleMass) {
         this.moleMass = moleMass;
     }
 
-    public Gas(double moleMass, double properHeat, double moleHeatWithConstPressure, double moleHeatWIthConstVolume) {
+    public Gas(double moleMass, double properHeat, double moleHeatWithConstPressure, double moleHeatWithConstVolume) {
         this.moleMass = moleMass;
         this.properHeat = properHeat;
         this.moleHeatWithConstPressure = moleHeatWithConstPressure;
-        this.moleHeatWIthConstVolume = moleHeatWIthConstVolume;
-        this.heatCapacityRatio = this.moleHeatWithConstPressure / this.moleHeatWIthConstVolume;;
+        this.moleHeatWithConstVolume = moleHeatWithConstVolume;
+        this.heatCapacityRatio = this.moleHeatWithConstPressure / this.moleHeatWithConstVolume;
+        System.out.println("params " +  this.moleHeatWithConstPressure + ", " +  this.moleHeatWithConstVolume + ", " +  this.heatCapacityRatio);
     }
 
     public double getMoleMass() {
@@ -41,7 +42,7 @@ public class Gas {
     }
 
     public double getMoleHeatWithConstVolume() {
-        return this.moleHeatWIthConstVolume;
+        return this.moleHeatWithConstVolume;
     }
 
     public double getHeatCapacityRatio() {

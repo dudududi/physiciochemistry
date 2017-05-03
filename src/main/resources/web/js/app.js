@@ -35,7 +35,7 @@
                             moleMass: parseFloat(data.gas.moleMass),
                             properHeat: parseFloat(data.gas.properHeat),
                             moleHeatWithConstPressure: parseFloat(data.gas.moleHeatWithConstPressure),
-                            moleHeatWIthConstVolume: parseFloat(data.gas.moleHeatWIthConstVolume)
+                            moleHeatWithConstVolume: parseFloat(data.gas.moleHeatWithConstVolume)
 
                         }, {
                             startTemp: parseFloat(data.startTemp),

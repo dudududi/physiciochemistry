@@ -21,6 +21,7 @@ public class AdiabaticExpansionProcess implements  Process {
         W = calcWork(n, gas.getMoleHeatWithConstVolume(), params.startTemperature, endTempeature);
         dU = W;
         dH = this.calcEnthalpy(params.startTemperature, endTempeature, n, gas.getMoleHeatWithConstPressure());
+        System.out.println("params " + gas.getHeatCapacityRatio() + ", " + n+ ", "+ gas.getMoleHeatWithConstPressure() + ", "+ dU);
         return new Result(W,Q,dH,dU);
     }
 

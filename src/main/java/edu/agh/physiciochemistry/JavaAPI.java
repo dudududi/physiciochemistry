@@ -2,6 +2,7 @@ package edu.agh.physiciochemistry;
 
 import edu.agh.physiciochemistry.model.Gas;
 import edu.agh.physiciochemistry.model.IsothermalExpansionProcess;
+import edu.agh.physiciochemistry.model.AdiabaticExpansionProcess;
 import edu.agh.physiciochemistry.model.Process;
 import netscape.javascript.JSObject;
 
@@ -27,7 +28,7 @@ public class JavaAPI {
     }
 
     public void invokeAdiabaticExpansionProcess(JSObject gas, JSObject params, JSObject callback){
-        Process.Result result = (new IsothermalExpansionProcess()).execute(Gas.fromJSObject(gas), Process.Params.fromJSObject(params));
+        Process.Result result = (new AdiabaticExpansionProcess()).execute(Gas.fromJSObject(gas), Process.Params.fromJSObject(params));
         callback.call("onResult", result.toJSArgs());
 
     }

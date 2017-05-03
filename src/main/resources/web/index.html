@@ -60,7 +60,7 @@
                 <hr/>
 
                 <div>
-                    <span>Gaz : {{selectedProcess.data.gas.name? selectedProcess.data.gas.name : 'wybierz'}}</span>
+                    <span>Gaz: </span>
                     <button id="demo-menu-lower-left" class="mdl-button mdl-js-button ">
                         {{selectedProcess.data.gas.name? selectedProcess.data.gas.name : 'Wybierz'}}
                         <img src="res/arrow_down.png"></img>
@@ -142,18 +142,68 @@
                 <h4>Zdefiniuj dane wejściowe</h4>
                 <hr/>
 
+                <div>
+                    <span>Gaz: </span>
+                    <button id="demo-menu-lower-left2" class="mdl-button mdl-js-button ">
+                        {{selectedProcess.data.gas.name? selectedProcess.data.gas.name : 'Wybierz'}}
+                        <img src="res/arrow_down.png"></img>
+                    </button>
+                    <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left2">
+                        <li class="mdl-menu__item" ng-repeat="gas in gases" ng-click="selectedProcess.data.gas = gas">{{gas.name}}</li>
+                    </ul>
+                </div>
+                <form action="#">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" ng-model="selectedProcess.data.startTemp" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="sample2">
+                        <label class="mdl-textfield__label" for="sample2">Temperatura poczatkowa</label>
+                        <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
+                    </div>
+                </form>
+                <form action="#">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" ng-model="selectedProcess.data.startPressure" type="text" pattern="-?[0-9]*(\.[0-9]+)?"
+                            id="sample2">
+                        <label class="mdl-textfield__label" for="sample2">Cisnienie poczatkowe</label>
+                        <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
+                    </div>
+                </form>
+                <form action="#">
+                    <div class="mdl-textfield mdl-js-textfield">
+                        <input class="mdl-textfield__input" ng-model="selectedProcess.data.endPressure" type="text" pattern="-?[0-9]*(\.[0-9]+)?"
+                            id="sample2">
+                        <label class="mdl-textfield__label" for="sample2">Cisnienie koncowe</label>
+                        <span class="mdl-textfield__error">Wprowadzone dane są nieprawidłowe</span>
+                    </div>
+                </form>
 
+                <div class="align-right">
+                    <button ng-click="selectedProcess.processFunction(selectedProcess.data)" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        <span>Oblicz</span>
+                    </button>
+                </div>
 
             </div>
             <div class="mdl-cell mdl-cell--8-col">
                 <h4>Wyniki</h4>
                 <hr/>
-
+                <p><b>Zdefiniowane dane</b></p>
+                <div>
+                    <p ng-show="selectedProcess.data.gas"><span>Gas: </span><i>[ {{selectedProcess.data.gas.name}}, m: {{selectedProcess.data.gas.moleMass}}u, Cw: {{selectedProcess.data.gas.properHeat}}J/gK ]</i></p>
+                    <p ng-show="selectedProcess.data.mass"><span>Masa: </span><i>{{selectedProcess.data.mass}}g</i></p>
+                    <p ng-show="selectedProcess.data.startTemp"><span>Temperatura początkowaa: </span><i>{{selectedProcess.data.startTemp}}K</i></p>
+                    <p ng-show="selectedProcess.data.startPressure"><span>Cisnienie poczatkowe </span><i>{{selectedProcess.data.startPressure}}Pa</i></p>
+                    <p ng-show="selectedProcess.data.endPressure"><span>Cisnienie koncowe </span><i>{{selectedProcess.data.endPressure}}Pa</i></p>
+                </div>
+                <hr/>
+                <p><b>Wynik końcowy</b></p>
+                <span>W: {{result.W}}|</span>
+                <span>Q: {{result.Q}}|</span>
+                <span>dH: {{result.dH}}|</span>
+                <span>dU: {{result.dU}}|</span>
             </div>
         </div>
     </div>
 </script>
-
 <script type="text/ng-template" id="template3.html">
     <div class="page-content">
         <div class="mdl-grid">

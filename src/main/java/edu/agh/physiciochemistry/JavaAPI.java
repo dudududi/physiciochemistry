@@ -1,5 +1,6 @@
 package edu.agh.physiciochemistry;
 
+import edu.agh.physiciochemistry.model.AdiabaticExpansionProcess;
 import edu.agh.physiciochemistry.model.Gas;
 import edu.agh.physiciochemistry.model.IsothermalExpansionProcess;
 import edu.agh.physiciochemistry.model.AdiabaticExpansionProcess;

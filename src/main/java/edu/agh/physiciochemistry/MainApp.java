@@ -12,7 +12,6 @@ import netscape.javascript.JSObject;
 
 import java.io.IOException;
 import java.net.URL;
-import java.net.URLClassLoader;
 
 public class MainApp extends Application {
 
@@ -29,21 +28,11 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         System.out.println("Starting application...");
 
-        ClassLoader cl = ClassLoader.getSystemClassLoader();
-
-        URL[] urls = ((URLClassLoader)cl).getURLs();
-
-        for(URL url: urls){
-            System.out.println(url.getFile());
-        }
-
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle(APP_TITLE);
 
         initRootLayout(MainApp.class.getClassLoader().getResource("layout/MainAppLayout.fxml"));
         initWebView(MainApp.class.getClassLoader().getResource("web/index.html"));
-
-        System.out.println(MainApp.class.getClassLoader().getResource("web/res/material-icons.css").toExternalForm());
     }
 
     private void initRootLayout(URL url){

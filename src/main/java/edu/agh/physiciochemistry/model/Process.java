@@ -2,8 +2,6 @@ package edu.agh.physiciochemistry.model;
 
 import netscape.javascript.JSObject;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Szymon on 23.03.2017.
@@ -20,8 +18,10 @@ public interface Process {
         private static final String START_TEMPERATURE = "startTemp";
         private static final String END_TEMPERATURE = "endTemp";
         private static final String MASS = "mass";
+        private static final String MOLE_NUMBER = "moleNumber";
         private static final String START_PRESSURE = "startPressure";
         private static final String END_PRESSURE = "endPressure";
+        private static final String IS_REVERSIBLE = "isReversible";
 
         double startVolume;
         double endVolume;
@@ -30,8 +30,10 @@ public interface Process {
         double startPressure;
         double endPressure;
         double mass;
+        double moleNumber;
+        boolean isReversible;
 
-        Params(double startVolume, double endVolume, double startTemperature, double endTemperature, double mass, double startPressure, double endPressure) {
+        Params(double startVolume, double endVolume, double startTemperature, double endTemperature, double mass, double startPressure, double endPressure, double moleNumber, boolean isReversible) {
             this.startVolume = startVolume;
             this.endVolume = endVolume;
             this.startTemperature = startTemperature;
@@ -39,6 +41,8 @@ public interface Process {
             this.mass = mass;
             this.startPressure = startPressure;
             this.endPressure = endPressure;
+            this.moleNumber = moleNumber;
+            this.isReversible = isReversible;
         }
 
 
@@ -48,10 +52,19 @@ public interface Process {
             double startTemperature = object.getMember(START_TEMPERATURE) instanceof Number ? ((Number) object.getMember(START_TEMPERATURE)).doubleValue() : 0;
             double endTemperature = object.getMember(END_TEMPERATURE) instanceof Number ? ((Number) object.getMember(END_TEMPERATURE)).doubleValue() : 0;
             double mass = object.getMember(MASS) instanceof Number ? ((Number) object.getMember(MASS)).doubleValue() : 0;
+            double moleNumber = object.getMember(MOLE_NUMBER) instanceof Number ? ((Number) object.getMember(MOLE_NUMBER)).doubleValue() : 0;
             double startPressure = object.getMember(START_PRESSURE) instanceof Number ? ((Number) object.getMember(START_PRESSURE)).doubleValue() : 0;
             double endPressure = object.getMember(END_PRESSURE) instanceof Number ? ((Number) object.getMember(END_PRESSURE)).doubleValue() : 0;
+            boolean isReversible = object.getMember(IS_REVERSIBLE) instanceof Boolean ? (boolean) object.getMember(IS_REVERSIBLE) : true;
 
-            return new Params(startVolume, endVolume, startTemperature, endTemperature, mass, startPressure, endPressure);
+            return new Params(startVolume, endVolume, startTemperature, endTemperature, mass, startPressure, endPressure, moleNumber, isReversible);
+        }
+
+        @Override
+        public String toString(){
+            return String.format("{%n\t%s: %f,%n\t%s: %f,%n\t%s: %f,%n\t%s: %f,%n\t%s: %f,%n\t%s: %f,%n\t%s: %f,%n\t%s: %f,%n\t%s: %s%n}",
+                    START_VOLUME, startVolume, END_VOLUME, endVolume, START_TEMPERATURE, startTemperature, END_TEMPERATURE, endTemperature,
+                    MASS, mass, MOLE_NUMBER, moleNumber, START_PRESSURE, startPressure, END_PRESSURE, endPressure, IS_REVERSIBLE, isReversible);
         }
     }
 
@@ -73,5 +86,12 @@ public interface Process {
         public Object[] toJSArgs() {
             return endTemp == 0 ? new Object[]{W, Q, dH, dU} : new Object[]{W, Q, dH, dU, endTemp};
         }
+
+        @Override
+        public String toString(){
+            return String.format("{%n\t%s: %f,%n\t%s: %f,%n\t%s: %f,%n\t%s: %f,%n\t%s: %f%n}",
+                    "W", W, "Q", Q, "dH", dH, "dU", dU, "endTemp", endTemp);
+        }
+
     }
 }

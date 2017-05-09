@@ -26,7 +26,6 @@ public class Gas {
         this.moleHeatWithConstPressure = moleHeatWithConstPressure;
         this.moleHeatWithConstVolume = moleHeatWithConstVolume;
         this.heatCapacityRatio = this.moleHeatWithConstPressure / this.moleHeatWithConstVolume;
-        System.out.println("params " +  this.moleHeatWithConstPressure + ", " +  this.moleHeatWithConstVolume + ", " +  this.heatCapacityRatio);
     }
 
     public double getMoleMass() {
@@ -55,5 +54,11 @@ public class Gas {
         double moleHeatWithConstPressure = object.getMember(MOLE_HEAT_WITH_CONST_PRESSURE) instanceof Number ? ((Number) object.getMember(MOLE_HEAT_WITH_CONST_PRESSURE)).doubleValue() : 0;
         double moleHeatWithConstVolume = object.getMember(MOLE_HEAT_WITH_CONST_VOLUME) instanceof Number ? ((Number) object.getMember(MOLE_HEAT_WITH_CONST_VOLUME)).doubleValue() : 0;
         return new Gas(moleMass, properHeat, moleHeatWithConstPressure, moleHeatWithConstVolume);
+    }
+
+    @Override
+    public String toString(){
+        return String.format("{%n\t%s: %f,%n\t%s: %f,%n\t%s: %f,%n\t%s: %f%n}",
+                MOLE_MASS, moleMass, PROPER_HEAT, properHeat, MOLE_HEAT_WITH_CONST_PRESSURE, moleHeatWithConstPressure, MOLE_HEAT_WITH_CONST_VOLUME, moleHeatWithConstVolume);
     }
 }

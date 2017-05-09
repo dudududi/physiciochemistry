@@ -16,30 +16,34 @@ public class JavaAPI {
 
     public static final String JS_NAME = "JavaAPI";
 
-    @SuppressWarnings("unused")
-    public void count(int x, double y, JSObject callback){
-        double result = x*y;
-        callback.call("onResult", result);
-        System.out.println(result);
-    }
+    public void invokeIsothermalExpansionProcess(JSObject gasObj, JSObject paramsObj, JSObject callback){
+        System.out.println("Invoked Isothermal Process with params:");
 
-    public void invokeIsothermalExpansionProcess(JSObject gas, JSObject params, JSObject callback){
-        Process.Result result = (new IsothermalExpansionProcess()).execute(Gas.fromJSObject(gas), Process.Params.fromJSObject(params));
+        Gas gas = Gas.fromJSObject(gasObj);
+        System.out.println("Gas: " + gas);
+
+        Process.Params params = Process.Params.fromJSObject(paramsObj);
+        System.out.println("Params: " + params);
+
+        Process.Result result = (new IsothermalExpansionProcess()).execute(gas, params);
+
+        System.out.println("Falling back to JS callback with result: " + result);
         callback.call("onResult", result.toJSArgs());
     }
 
-    public void invokeAdiabaticExpansionProcess(JSObject gas, JSObject params, JSObject callback){
-        Process.Result result = (new AdiabaticExpansionProcess()).execute(Gas.fromJSObject(gas), Process.Params.fromJSObject(params));
+    public void invokeAdiabaticExpansionProcess(JSObject gasObj, JSObject paramsObj, JSObject callback){
+        System.out.println("Invoked Adiabatic Process with params:");
+
+        Gas gas = Gas.fromJSObject(gasObj);
+        System.out.println("Gas: " + gas);
+
+        Process.Params params = Process.Params.fromJSObject(paramsObj);
+        System.out.println("Params: " + params);
+
+        Process.Result result = (new AdiabaticExpansionProcess()).execute(gas, params);
+
+        System.out.println("Falling back to JS callback with result: " + result);
         callback.call("onResult", result.toJSArgs());
 
     }
-
-    public void invokeIsothermalCompressProcess(){
-
-    }
-
-    public void invokeAdiabaticCompressProcess(){
-
-    }
-
 }

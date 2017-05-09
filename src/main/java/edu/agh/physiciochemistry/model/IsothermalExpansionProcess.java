@@ -17,7 +17,7 @@ public class IsothermalExpansionProcess implements  Process {
         dU = 0;
         dH = 0;
 
-        n = this.calcMoleNumber(params.mass, gas.getMoleMass());
+        n = params.moleNumber != 0 ? params.moleNumber : this.calcMoleNumber(params.mass, gas.getMoleMass());
         W = this.calcWork(n, params.startTemperature, params.startVolume, params.endVolume);
         Q = - W;
 

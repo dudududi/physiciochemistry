@@ -19,24 +19,27 @@ public class AdiabaticExpansionProcess implements  Process {
         if (params.startVolume != 0 && params.endVolume != 0) {
             endTempeature = this.calcEndTempUsingVolumes(params.startTemperature, params.startVolume, params.endVolume, gas.getHeatCapacityRatio());
         } else {
-            endTempeature = this.calcEndTempUsingPressures(params.startTemperature, params.startPressure, params.endPressure, gas.getHeatCapacityRatio());
+            endTempeature = this.calcEndTempUsingPressures(params.startTemperature, params.startPressure, params.endPressure, gas.getHeatCapacityRatio(), params.isReversible, gas);
         }
-        n = this.calcMoleNumber(params.mass, gas.getMoleMass());
+        n = params.moleNumber != 0 ? params.moleNumber : this.calcMoleNumber(params.mass, gas.getMoleMass());
         W = calcWork(n, gas.getMoleHeatWithConstVolume(), params.startTemperature, endTempeature);
         dU = W;
         dH = this.calcEnthalpy(params.startTemperature, endTempeature, n, gas.getMoleHeatWithConstPressure());
-        System.out.print("params" + params);
         return new Result(W,Q,dH,dU, endTempeature);
     }
 
     private double calcWork(double n, double cv, double T1, double T2){
-        return n*cv*(T1-T2);
+        return n*cv*(T2-T1);
     }
 
-    private double calcEndTempUsingPressures(double T1, double p1, double p2, double k){
-        double fraction = p1 / p2;
-        double index = (1 - k) / k;
-        return T1 * Math.pow(fraction, index);
+    private double calcEndTempUsingPressures(double T1, double p1, double p2, double k, boolean isReversible, Gas gas){
+        if (!isReversible) {
+            return (REYNOLDS_NUMBER * p2 + gas.getMoleHeatWithConstVolume() * p1)/(gas.getMoleHeatWithConstPressure() * p1) * T1;
+        } else {
+            double fraction = p1 / p2;
+            double index = (1 - k) / k;
+            return T1 * Math.pow(fraction, index);
+        }
     }
 
     private double calcEndTempUsingVolumes(double T1, double V1, double V2, double k){

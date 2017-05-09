@@ -1,6 +1,5 @@
 package edu.agh.physiciochemistry;
 
-//import com.mohamnag.fxwebview_debugger.DevToolsDebuggerServer;
 import javafx.application.Application;
 import javafx.concurrent.Worker;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +12,7 @@ import netscape.javascript.JSObject;
 
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLClassLoader;
 
 public class MainApp extends Application {
 
@@ -20,7 +20,6 @@ public class MainApp extends Application {
 
     private Stage primaryStage;
     private WebEngine webEngine;
-    // private JavaScriptAPI javaScriptAPI;
 
     public static void main(String[] args) {
         launch(args);
@@ -28,11 +27,23 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        System.out.println("Starting application...");
+
+        ClassLoader cl = ClassLoader.getSystemClassLoader();
+
+        URL[] urls = ((URLClassLoader)cl).getURLs();
+
+        for(URL url: urls){
+            System.out.println(url.getFile());
+        }
+
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle(APP_TITLE);
 
         initRootLayout(MainApp.class.getClassLoader().getResource("layout/MainAppLayout.fxml"));
         initWebView(MainApp.class.getClassLoader().getResource("web/index.html"));
+
+        System.out.println(MainApp.class.getClassLoader().getResource("web/res/material-icons.css").toExternalForm());
     }
 
     private void initRootLayout(URL url){
@@ -61,23 +72,13 @@ public class MainApp extends Application {
             if (newValue == Worker.State.SUCCEEDED) {
                 JSObject jsObject = (JSObject) webEngine.executeScript("window");
                 jsObject.setMember(JavaAPI.JS_NAME, new JavaAPI());
+                System.out.println("Engine initialized successfully.");
             }
         }));
 
-//        try {
-//            DevToolsDebuggerServer.startDebugServer(webEngine.impl_getDebugger(), 51742);
-//        } catch (Exception e){
-//            System.err.println("Error occurred during starting debug session. " + e.getMessage());
-//        }
-
-
         webEngine.setJavaScriptEnabled(true);
         webEngine.load(url.toExternalForm());
+        System.out.println("Initializing engine...");
 
     }
-
-//    @Override
-//    public void stop() throws Exception {
-//        DevToolsDebuggerServer.stopDebugServer();
-//    }
 }
